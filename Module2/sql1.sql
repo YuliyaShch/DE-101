@@ -52,7 +52,6 @@ order by category, segment ;
 
 -- 3.3 Percentage of Sales by Region
 select region
---, round(sum(sales),0) total_sales
 , round(sum(sales)*100.0/sum(sum(sales)) over(),1) as percentage
 from orders 
 group by region;
