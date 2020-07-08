@@ -59,15 +59,11 @@ group by region;
 
 -- 3.4 Percentage of Returns
 select r.returned
---, round(sum(sales)*100.0/sum(sum(sales)) over(),1) as percentage
 , round(count(o.order_id)*100.0/sum(count(o.order_id)) over(),1) as percentage
 from orders o left join returns r 
 on o.order_id=r.order_id 
 group by returned;  -- поменять нулл на НЕТ
 
-
-select returned
-, 
 
 -- 3.5 Salesmen
 select p.person
