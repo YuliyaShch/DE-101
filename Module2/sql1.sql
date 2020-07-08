@@ -1,5 +1,5 @@
 -- 1. Overview
-select round(sum(sales),0) total_sales
+select round(sum(sales),0) total_sales 
 , round(sum(profit),0) total_profit
 , round(((sum(profit)/sum(sales))*100),2) as profit_ratio
 , round((sum(profit)/count(distinct order_id)),2) as profit_per_order
@@ -58,6 +58,7 @@ from orders
 group by region;
 
 -- 3.4 Percentage of Returns
+-- !!! 
 select r.returned
 , round(count(o.order_id)*100.0/sum(count(o.order_id)) over(),1) as percentage
 from orders o left join returns r 
