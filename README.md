@@ -1,2 +1,2 @@
 # DE-101
-Repositary for Datalearn course by https://datalearn.ru/
+Repository for Datalearn course by https://datalearn.ru/
