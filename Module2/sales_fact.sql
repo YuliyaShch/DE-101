@@ -58,5 +58,6 @@ INNER JOIN geography_dim g on o.country =g.country and o.city =g.city and o.post
 INNER JOIN products_dim p on o.product_id =p.product_id and o.category =p.category  and o.subcategory =p.subcategory and o.segment=p.segment and o.product_name =p.product_name 
 INNER JOIN customers_dim cu on o.customer_id =cu.customer_id ;
 
+
 --check data
 SELECT * FROM sales_fact;
