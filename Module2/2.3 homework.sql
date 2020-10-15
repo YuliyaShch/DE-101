@@ -10,7 +10,7 @@ from orders;
 select 
 segment
 , round(sum(sales),0) total_sales
-, date_trunc('month', order_date)
+, date_trunc('month', order_date) month
 from orders
 group by segment, date_trunc('month', order_date)
 order by segment, date_trunc('month', order_date) asc ;
@@ -18,7 +18,7 @@ order by segment, date_trunc('month', order_date) asc ;
 select 
 category 
 , round(sum(sales),0) total_sales
-, date_trunc('month', order_date)
+, date_trunc('month', order_date) month
 from orders
 group by category, date_trunc('month', order_date)
 order by category, date_trunc('month', order_date) asc;
