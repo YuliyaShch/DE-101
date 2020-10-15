@@ -1,58 +1,57 @@
 -- 1. Overview
-select round(sum(sales),0) total_sales 
+SELECT round(sum(sales),0) total_sales 
 , round(sum(profit),0) total_profit
-, round(((sum(profit)/sum(sales))*100),2) as profit_ratio
-, round((sum(profit)/count(distinct order_id)),2) as profit_per_order
-, round((sum(sales)/count(distinct customer_id )),2) as sales_per_customer
+, round(((sum(profit)/SUM(sales))*100),2) as profit_ratio
+, round((sum(profit)/COUNT(DISTINCT order_id)),2) as profit_per_order
+, round((sum(sales)/COUNT(DISTINCT customer_id )),2) as sales_per_customer
 , round(avg(discount),2) as avg_discount
-from orders;
+FROM orders;
 
-select segment
+SELECT segment
 , round(sum(sales),0) total_sales
 , date_trunc('month', order_date) as month
-from orders
-group by segment, date_trunc('month', order_date)
-order by segment, date_trunc('month', order_date) asc ;
+FROM orders
+GROUP BY segment, date_trunc('month', order_date)
+ORDER BY segment, date_trunc('month', order_date) ASC ;
 
-select 
-category 
+SELECT category 
 , round(sum(sales),0) total_sales
 , date_trunc('month', order_date) as month
-from orders
-group by category, date_trunc('month', order_date)
-order by category, date_trunc('month', order_date) asc;
+FROM orders
+GROUP BY category, date_trunc('month', order_date)
+ORDER BY category, date_trunc('month', order_date) ASC;
 
 -- 2. Product Metrics
 -- Sales by Product Category over time
-select category
+SELECT category
 , round(sum(sales),0) total_sales
 , round(sum(profit),0) total_profit
 , order_date 
-from orders
-group by category, order_date
-order by category, order_date ;
+FROM orders
+GROUP BY category, order_date
+ORDER BY category, order_date ;
 
 -- 3. Customer Analysis
 -- 3.1 Sales by Category/SubCategory
-select category
+SELECT category
 , subcategory
 , round(sum(sales),0) total_sales
-from orders o2 
-group by category, subcategory
-order by category, subcategory;
+FROM orders o2 
+GROUP BY category, subcategory
+ORDER BY category, subcategory;
 
 -- 3.2 Sales by Segment
-select category
+SELECT category
 , segment 
 , round(sum(sales),0) total_sales
-from orders o2 
-group by category, segment 
-order by category, segment ;
+FROM orders o2 
+GROUP BY category, segment 
+ORDER BY category, segment ;
 
 -- 3.3 Percentage of Sales by Region
-select region
+SELECT region
 , round(sum(sales)*100.0/sum(sum(sales)) over(),1) as percentage
-from orders 
+FROM orders 
 group by region;
 
 -- 3.4 Percentage of Returns
