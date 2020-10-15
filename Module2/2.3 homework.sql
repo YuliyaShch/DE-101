@@ -7,8 +7,7 @@ select round(sum(sales),0) total_sales
 , round(avg(discount),2) as avg_discount
 from orders;
 
-select 
-segment
+select segment
 , round(sum(sales),0) total_sales
 , date_trunc('month', order_date) month
 from orders
